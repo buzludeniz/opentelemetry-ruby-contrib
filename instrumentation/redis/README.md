@@ -51,6 +51,12 @@ OpenTelemetry::SDK.configure do |c|
     # To obfuscate, set db_statement to :obfuscate.
     # To omit the attribute, set db_statement to :omit.
     db_statement: :include,
+
+    # Redis commands are traced by default even when there is no active span,
+    # in which case each command starts a new trace as a root span.
+    # To trace only commands that run inside an existing trace, set
+    # trace_root_spans to false.
+    trace_root_spans: false,
   }
 end
 ```
